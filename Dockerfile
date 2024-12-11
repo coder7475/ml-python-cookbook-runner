@@ -1,11 +1,10 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 WORKDIR /workspace
 COPY download_nltk.py .
 
-RUN apt-get update && apt-get install graphviz -y && apt-get clean
-
-RUN python -m pip install spacy nltk && \
+RUN apt-get update && apt-get install graphviz -y && apt-get clean && \
+    python -m pip install spacy nltk && \
     python download_nltk.py && \
     spacy download en_core_web_sm
 
